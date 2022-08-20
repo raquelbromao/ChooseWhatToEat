@@ -1,20 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { RestaurantDTO } from './dto/restaurant.dto';
 
 @Injectable()
 export class RestaurantService {
-  getRestaurants(): string {
+  getAll(): string {
     return 'All restaurants returned';
   }
 
-  insertRestaurant(): string {
-    return 'Restaurant inserted';
+  insert(restaurantDTO: RestaurantDTO): string {
+    return 'Restaurant inserted:\n' + JSON.stringify(restaurantDTO);
   }
 
-  deleteRestaurant(): string {
-    return 'Restaurant deleted';
+  delete(id: string): string {
+    return `Restaurant ${id} deleted`;
   }
 
-  chooseRestaurant(): string {
-    return 'Restaurant chosen returned';
+  choose(id: string): string {
+    return `Restaurant ${id} returned`;
   }
 }

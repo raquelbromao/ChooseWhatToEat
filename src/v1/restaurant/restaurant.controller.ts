@@ -1,28 +1,29 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
+import { RestaurantDTO } from './dto/restaurant.dto';
 
-@Controller()
+@Controller('/restaurant')
 //TODO: fix headers and insert body
 export class RestaurantController {
   constructor(private readonly restaurantService: RestaurantService) {}
 
   @Get()
-  getRestaurants(): string {
-    return this.restaurantService.getRestaurants();
+  getAll(): string {
+    return this.restaurantService.getAll();
   }
 
-  @Post()
-  insertRestaurant(): string {
-    return this.restaurantService.insertRestaurant();
+  @Post('/insert')
+  insert(@Body() restaurantDTO: RestaurantDTO): string {
+    return this.restaurantService.insert(restaurantDTO);
   }
 
-  @Delete()
-  deleteRestaurant(): string {
-    return this.restaurantService.deleteRestaurant();
+  @Delete('/delete/:id')
+  delete(@Param('id') id: string): string {
+    return this.restaurantService.delete(id);
   }
 
-  @Get()
-  chooseRestaurant(): string {
-    return this.restaurantService.chooseRestaurant();
+  @Get('/:id')
+  choose(@Param('id') id: string): string {
+    return this.restaurantService.choose(id);
   }
 }
