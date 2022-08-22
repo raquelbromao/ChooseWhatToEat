@@ -1,4 +1,4 @@
-export class RestaurantDTO {
+export interface Restaurant {
   name: string;
   type: string;
   stars: number;
